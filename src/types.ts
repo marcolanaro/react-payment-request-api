@@ -1,3 +1,5 @@
+import { StatelessComponent } from "react";
+
 export type supportedMethod = "amex" | "diners" | "discover" | "jcb" | "maestro" | "mastercard" | "unionpay" | "visa";
 
 export type supportedMethods = supportedMethod[];
@@ -54,6 +56,12 @@ export interface PaymentRequestInterface {
     show: () => void;
     abort: () => void;
 }
+
+export type PaymentRequestEnancher = (params: PaymentRequestParams) =>
+    (WrappedComponent: StatelessComponent<any>) => any;
+
+declare const paymentRequest: PaymentRequestEnancher;
+export default paymentRequest;
 
 export type Currency =
 "AED" |

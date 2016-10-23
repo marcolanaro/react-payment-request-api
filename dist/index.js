@@ -10,6 +10,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 const React = require("react");
 let request;
 const isSupported = !!window.PaymentRequest;
+const abort = () => request.abort();
 const addEventListener = (request, event, callback) => {
     if (!!callback) {
         request.addEventListener(event, (e) => e.updateWith(new Promise((resolve, reject) => callback(request, resolve, reject))));
@@ -17,17 +18,16 @@ const addEventListener = (request, event, callback) => {
 };
 const show = (params) => () => {
     request = new PaymentRequest(params.methodData, params.details, params.options);
-    addEventListener(request, 'shippingaddresschange', params.onShippingAddressChange);
-    addEventListener(request, 'shippingoptionchange', params.onShippingOptionChange);
+    addEventListener(request, "shippingaddresschange", params.onShippingAddressChange);
+    addEventListener(request, "shippingoptionchange", params.onShippingOptionChange);
     return request.show()
         .then((paymentResponse) => {
         new Promise((resolve, reject) => params.onShowSuccess(paymentResponse, resolve, reject))
-            .then(() => paymentResponse.complete('success'))
-            .catch(() => paymentResponse.complete('fail'));
+            .then(() => paymentResponse.complete("success"))
+            .catch(() => paymentResponse.complete("fail"));
     })
         .catch(params.onShowFail);
 };
-const abort = () => request.abort();
 const paymentRequest = (params) => (WrappedComponent) => (props) => !isSupported
     ? React.createElement(WrappedComponent, __assign({}, props))
     : (React.createElement(WrappedComponent, __assign({}, props, {isSupported: true, show: show(params), abort: abort})));
