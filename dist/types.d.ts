@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { StatelessComponent } from "react";
 export declare type supportedMethod = "amex" | "diners" | "discover" | "jcb" | "maestro" | "mastercard" | "unionpay" | "visa";
 export declare type supportedMethods = supportedMethod[];

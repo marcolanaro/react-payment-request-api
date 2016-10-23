@@ -1,0 +1,27 @@
+{
+  "name": "react-payment-request-api-demo",
+  "version": "1.0.0",
+  "description": "React high order component that expose the payment request api - demo",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "Marco Lanaro <marcolanaro@gmail.com> (https://github.com/marcolanaro)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^0.14.41",
+    "@types/react-dom": "^0.14.18",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "source-map-loader": "^0.1.5",
+    "ts-loader": "^0.9.5",
+    "typescript": "2.0.3"
+  },
+  "peerDependencies": {
+    "react": "^15.3.2"
+  },
+  "dependencies": {
+    "npm": "^3.10.9",
+    "react-payment-request-api": "^0.1.2"
+  }
+}
