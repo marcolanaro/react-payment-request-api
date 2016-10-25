@@ -21340,11 +21340,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const React = __webpack_require__(1);
 	const react_payment_request_api_1 = __webpack_require__(173);
-	const Button = ({ show, isSupported, style, }) => isSupported
-	    ? React.createElement("button", {onClick: show, style: style}, "Pay now!")
-	    : React.createElement("span", null, "Payment request not supported");
+	const button_1 = __webpack_require__(174);
 	const details = {
 	    displayItems: [{
 	            label: 'Original donation amount',
@@ -21358,7 +21355,7 @@
 	        amount: { currency: 'USD', value: '55.00' },
 	    },
 	};
-	const PaymentButton = react_payment_request_api_1.default({
+	const config = {
 	    methodData: [{
 	            supportedMethods: ['visa', 'mastercard', 'diners'],
 	        }],
@@ -21386,9 +21383,9 @@
 	    onShippingOptionChange: (request, resolve, reject) => {
 	        resolve(details);
 	    },
-	})(Button);
+	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = PaymentButton;
+	exports.default = react_payment_request_api_1.default(config)(button_1.default);
 
 
 /***/ },
@@ -21430,6 +21427,19 @@
 	    : (React.createElement(WrappedComponent, __assign({}, props, {isSupported: true, show: show(params), abort: abort})));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = paymentRequest;
+
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	const React = __webpack_require__(1);
+	const Button = ({ show, isSupported, style, }) => isSupported
+	    ? React.createElement("button", {onClick: show, style: style}, "Pay now!")
+	    : React.createElement("span", null, "Payment request not supported");
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Button;
 
 
 /***/ }

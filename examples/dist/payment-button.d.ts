@@ -1,2 +1,2 @@
-declare const PaymentButton: any;
-export default PaymentButton;
+declare var _default: any;
+export default _default;
