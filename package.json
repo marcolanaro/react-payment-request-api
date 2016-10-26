@@ -13,6 +13,18 @@
       "type": "git",
       "url": "https://github.com/marcolanaro/react-payment-request-api.git"
   },
+  "bugs": {
+    "url": "https://github.com/marcolanaro/react-payment-request-api/issues"
+  },
+  "homepage": "https://github.com/marcolanaro/react-payment-request-api",
+  "keywords": [
+    "react",
+    "component",
+    "payment-request",
+    "android-pay",
+    "high-order",
+    "typescript"
+  ],
   "author": "Marco Lanaro <marcolanaro@gmail.com> (https://github.com/marcolanaro)",
   "license": "MIT",
   "devDependencies": {
@@ -27,8 +39,7 @@
     "typescript": "^2.0.3"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0",
-    "typescript": "^2.0.3"
+    "react": "^0.14.0 || ^15.0.0-0"
   },
   "pre-commit": [
     "tslint",
