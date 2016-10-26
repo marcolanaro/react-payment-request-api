@@ -23,7 +23,7 @@ npm install react-payment-request-api --save
 Consume the wrapped component:
 
 ```js
-import * as React from "react";
+import React from "react";
 
 const Button = ({ show, isSupported }) => isSupported
     ? <button onClick={show}>Pay now!</button>
@@ -35,7 +35,7 @@ export default Button;
 Configure the high order component:
 
 ```js
-import * as React from "react";
+import React from "react";
 import paymentRequest from "react-payment-request-api";
 
 import YourButtonComponent from "./button";
