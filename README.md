@@ -90,6 +90,15 @@ const config = {
 export default paymentRequest(config)(YourButtonComponent);
 ```
 
+## API
+
+Your wrapped component will be decorated with this injected props:
+
+Parameter   | Type                           | Description
+----------- | ------------------------------ | -----------
+isSupported | boolean                        | True if the payment request api is supported by the browser.
+show        | function: () => PaymentRequest | It will begin the process when the merchant site want to create a new [PaymentRequest](https://www.w3.org/TR/payment-request/#paymentrequest-interface).
+
 ## Typescript
 
 Typescript is completely optional. The package is exported as ES6/commonjs module.<br />
