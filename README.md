@@ -98,6 +98,19 @@ Parameter   | Type                           | Description
 ----------- | ------------------------------ | -----------
 isSupported | boolean                        | True if the payment request api is supported by the browser.
 show        | function: () => PaymentRequest | It will begin the process when the merchant site want to create a new [PaymentRequest](https://www.w3.org/TR/payment-request/#paymentrequest-interface).
+abort       | function: () => void           | You can intentionally abort a PaymentRequest by calling the abort method.
+
+Configuration of the high order component:
+
+Parameter               | Type                                               | Description
+----------------------- | -------------------------------------------------- | -----------
+methodData              | object                                             | Required payment method data.
+details                 | object                                             | Required information about transaction.
+options                 | object                                             | Optional parameter for things like shipping, etc.
+onShowSuccess           | Promise based callback: (result, resolve, reject)  | The handler will be executed after the filling of the form is successfull. You should post your payment request and then resolve or reject the promise. 
+onShowFail              | Promise based callback: (error)                    | The handler will be executed if the filling of the form is not successfull (like when the user dismiss the form).
+onShippingAddressChange | Promise based callback: (request, resolve, reject) | The handler will be executed if the shipping address has change. You can change the request and then resolve the promise.
+onShippingOptionChange  | Promise based callback: (request, resolve, reject) | The handler will be executed if the shipping option has change. You can change the request and then resolve the promise.
 
 ## Typescript
 
