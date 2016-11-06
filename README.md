@@ -90,6 +90,31 @@ const config = {
 export default paymentRequest(config)(YourButtonComponent);
 ```
 
+## What if I use Redux?
+
+In this case you can define the configuration as a function that accept two parameters. The parameters will be the `dispatch` and `getState` functions that will permit you to interact with the store in the lifecycle of the payment request.
+
+```js
+import React from "react";
+import paymentRequest from "react-payment-request-api";
+
+import YourButtonComponent from "./button";
+
+const config = (dispatch, getState) => ({
+    ...,
+    onShowSuccess: (result, resolve, reject): void => {
+        dispatch({ TYPE: 'MAKE_PAYMENT' });
+            .then(_ => resolve());
+    },
+    onShippingAddressChange: (request, resolve, reject) => {
+        resolve(selectNewDetails(getState(), request));
+    },
+    ...,
+});
+
+export default paymentRequest(config)(YourButtonComponent);
+```
+
 ## API
 
 Your wrapped component will be decorated with this injected props:
