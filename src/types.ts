@@ -41,7 +41,7 @@ export interface Options {
     requestPayerPhone?: boolean;
 }
 
-export interface PaymentRequestParams {
+export interface PaymentRequestParamsObject {
     methodData: MethodData;
     details: Details;
     options?: Options;
@@ -50,6 +50,12 @@ export interface PaymentRequestParams {
     onShippingAddressChange?: Callback;
     onShippingOptionChange?: Callback;
 }
+
+export interface PaymentRequestParamsFunction {
+    (dispatch: any, getState: any): PaymentRequestParamsObject;
+};
+
+export interface PaymentRequestParams extends PaymentRequestParamsObject, PaymentRequestParamsFunction {};
 
 export interface PaymentRequestInterface {
     isSupported: boolean;

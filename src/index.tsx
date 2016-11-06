@@ -43,17 +43,50 @@ const show = (params: PaymentRequestParams) => () => {
         .catch(params.onShowFail);
 };
 
+const factoryComponent = (
+    WrappedComponent: React.StatelessComponent<any>,
+    params: any
+): React.StatelessComponent<PaymentRequestInterface & any> => (props: any) =>
+    !isSupported || !params
+        ? <WrappedComponent {...props} />
+        : <WrappedComponent
+            {...props}
+            isSupported
+            show={show(params)}
+            abort={abort}
+        />;
+
 const paymentRequest: PaymentRequestEnancher = (params: PaymentRequestParams) =>
-    (WrappedComponent: React.StatelessComponent<any>): React.StatelessComponent<PaymentRequestInterface & any> =>
-        (props) => !isSupported
-            ? <WrappedComponent {...props} />
-            : (
-                <WrappedComponent
-                    {...props}
-                    isSupported
-                    show={show(params)}
-                    abort={abort}
-                />
-            );
+    (WrappedComponent: React.StatelessComponent<any>) => {
+        if (typeof params === "function") {
+            return class ExtendedComponent extends React.Component<any, any> {
+                context: {
+                    store: {
+                        dispatch: (payload: any) => any;
+                        getState: () => any;
+                    }
+                };
+
+                static contextTypes =  {
+                    store: React.PropTypes.object,
+                };
+
+                render() {
+                    if (this.context.store) {
+                        return factoryComponent(
+                            WrappedComponent,
+                            params(
+                                this.context.store.dispatch,
+                                this.context.store.getState
+                            )
+                        )(this.props);
+                    }
+                    console.warn(" %cRedux store not found", "color: tomato;");
+                    return React.createElement(WrappedComponent);
+                }
+            };
+        }
+        return factoryComponent(WrappedComponent, params);
+    };
 
 export default paymentRequest;
