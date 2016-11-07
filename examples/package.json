@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "npm": "^3.10.9",
-    "react-payment-request-api": "^0.1.2"
+    "react-payment-request-api": "^0.1.4"
   }
 }
