@@ -12,6 +12,10 @@
 
 At the moment the [payment request api](https://developers.google.com/web/fundamentals/getting-started/primers/payment-request/) is supported on Chrome for Android and Android Webview v. ^53.0.
 
+## Demo
+
+You can find a working demo [here](https://lanaro.net/react-payment-request-api/). Be sure to use a supported browser.
+
 ## NPM Install
 
 ```bash
