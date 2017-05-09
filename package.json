@@ -39,8 +39,8 @@
     "tslint": "^3.15.1",
     "typescript": "^2.0.3"
   },
-  "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0"
+  "dependencies": {
+    "react": ">=0.14.0"
   },
   "pre-commit": [
     "tslint",
