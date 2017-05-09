@@ -5,9 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
   "scripts": {
+    "clean": "rm -rf ./dist",
     "build": "tsc",
     "tslint": "tslint -c ./tslint.json './src/**/*.ts'",
-    "prepublish": "npm run tslint && npm run build"
+    "prepublish": "npm run clean && npm run tslint && npm run build"
   },
   "repository": {
       "type": "git",
