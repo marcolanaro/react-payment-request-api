@@ -10,7 +10,7 @@
     "lint": "tslint -c ./tslint.json './src/**/*.{ts,tsx}'",
     "test": "jest --config jest.json",
     "test:watch": "jest --config jest.json --watch",
-    "prepublish": "npm run clean && npm run lint && npm run build"
+    "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
   },
   "repository": {
     "type": "git",
