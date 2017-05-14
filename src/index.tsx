@@ -1,7 +1,7 @@
 /* tslint:disable:no-any */
 import * as React from 'react';
-import { Component } from 'react';
 
+import normalizeInstrumentations from './normalizeInstrumentations';
 import {
   PaymentRequestEnancher,
   PaymentRequestParams,
@@ -17,9 +17,9 @@ let request: any;
 
 const isSupported = !!(window as any).PaymentRequest;
 
-const abort = () => request.abort();
+export const abort = () => request.abort();
 
-const addEventListener = (requestListener: any, event: string, callback: Callback) => {
+const addEventListener = (requestListener: any, event: string, callback?: Callback) => {
   if (!!callback) {
     requestListener.addEventListener(event, (e: any) =>
       e.updateWith(new Promise((resolve: Resolve, reject: Reject) =>
@@ -28,8 +28,8 @@ const addEventListener = (requestListener: any, event: string, callback: Callbac
   }
 };
 
-const show = (params: PaymentRequestParams) => () => {
-  request = new PaymentRequest(params.methodData, params.details, params.options);
+export const show = (params: PaymentRequestParams) => () => {
+  request = new PaymentRequest(normalizeInstrumentations(params.methodData), params.details, params.options);
 
   addEventListener(request, 'shippingaddresschange', params.onShippingAddressChange);
   addEventListener(request, 'shippingoptionchange', params.onShippingOptionChange);

@@ -19,7 +19,10 @@ const details: Details = {
 
 const config = {
   methodData: [{
-    supportedMethods: ['visa', 'mastercard', 'diners'],
+    supportedMethods: ['basic-card'],
+    data: {
+      supportedNetworks: ['visa', 'mastercard', 'diners'],
+    },
   }],
   details: details,
   options: {
@@ -33,7 +36,8 @@ const config = {
     // make the payment
     setTimeout(resolve, 2000);
   },
-  onShowFail: (error) => alert('Fail!'),
+  /* tslint:disable-next-line:no-console */
+  onShowFail: (error) => console.log('Error', error),
   onShippingAddressChange: (request, resolve, reject): void => {
     /* tslint:disable-next-line:no-console */
     console.log('ShippingAddress:', request.shippingAddress);

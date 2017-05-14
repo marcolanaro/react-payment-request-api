@@ -1,9 +1,13 @@
 /* tslint:disable:no-any */
 import { StatelessComponent } from 'react';
 
-export type supportedMethod = 'amex' | 'diners' | 'discover' | 'jcb' | 'maestro' | 'mastercard' | 'unionpay' | 'mir' | 'visa';
+export type supportedNetwork = 'amex' | 'diners' | 'discover' | 'jcb' | 'maestro' | 'mastercard' | 'unionpay' | 'mir' | 'visa';
 
-export type supportedMethods = supportedMethod[];
+export type supportedNetworks = supportedNetwork[];
+
+export type supportedType = 'credit' | 'debit' | 'prepaid cards';
+
+export type supportedTypes = supportedType[];
 
 export interface Amount {
   currency: Currency;
@@ -26,9 +30,21 @@ export type Resolve = (value?: {} | PromiseLike<{}>) => void;
 export type Reject = (reason?: any) => void;
 export type Callback = (request: any, resolve: Resolve, reject: Reject) => void;
 
-export type MethodData = [{
-  supportedMethods: supportedMethods;
-}];
+export type PreChrome57Instrumentation = {
+  supportedMethods: supportedNetworks;
+};
+
+export type BasicCardInstrumentation = {
+  supportedMethods: ['basic-card'];
+  data?: {
+    supportedNetworks: supportedNetworks;
+    supportedTypes?: supportedTypes;
+  };
+};
+
+export type Instrumentation = BasicCardInstrumentation | PreChrome57Instrumentation;
+
+export type Instrumentations = Instrumentation[];
 
 export interface Details {
   total: Item;
@@ -43,7 +59,7 @@ export interface Options {
 }
 
 export interface PaymentRequestParamsObject {
-  methodData: MethodData;
+  methodData: Instrumentations;
   details: Details;
   options?: Options;
   onShowSuccess: (paymentResponse: any, resolve: Resolve, reject: Reject) => void;
