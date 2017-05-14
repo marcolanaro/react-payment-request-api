@@ -8,6 +8,8 @@
     "clean": "rm -rf ./dist",
     "build": "tsc",
     "lint": "tslint -c ./tslint.json './src/**/*.{ts,tsx}'",
+    "test": "jest --config jest.json",
+    "test:watch": "jest --config jest.json --watch",
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "repository": {
@@ -29,12 +31,15 @@
   "author": "Marco Lanaro <marcolanaro@gmail.com> (https://github.com/marcolanaro)",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^19.2.3",
     "@types/react": "^0.14.41",
     "@types/react-dom": "^0.14.18",
+    "jest": "^20.0.1",
     "pre-commit": "^1.1.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "source-map-loader": "^0.1.5",
+    "ts-jest": "^20.0.3",
     "ts-loader": "^0.9.5",
     "tslint": "^5.2.0",
     "tslint-eslint-rules": "^4.0.0",

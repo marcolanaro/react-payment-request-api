@@ -1,7 +1,8 @@
 /* tslint:disable:no-any */
 import { StatelessComponent } from 'react';
 
-export type supportedNetwork = 'amex' | 'diners' | 'discover' | 'jcb' | 'maestro' | 'mastercard' | 'unionpay' | 'mir' | 'visa';
+export type supportedNetwork =
+  'amex' | 'diners' | 'discover' | 'jcb' | 'maestro' | 'mastercard' | 'unionpay' | 'mir' | 'visa';
 
 export type supportedNetworks = supportedNetwork[];
 
