@@ -6,20 +6,20 @@ export type supportedMethod = 'amex' | 'diners' | 'discover' | 'jcb' | 'maestro'
 export type supportedMethods = supportedMethod[];
 
 export interface Amount {
-    currency: Currency;
-    value: string;
+  currency: Currency;
+  value: string;
 }
 
 export interface Item {
-    label: string;
-    amount: Amount;
+  label: string;
+  amount: Amount;
 }
 
 export interface ShippingOption {
-      id: string;
-      label: string;
-      amount: Amount;
-      selected?: boolean;
+  id: string;
+  label: string;
+  amount: Amount;
+  selected?: boolean;
 }
 
 export type Resolve = (value?: {} | PromiseLike<{}>) => void;
@@ -27,45 +27,45 @@ export type Reject = (reason?: any) => void;
 export type Callback = (request: any, resolve: Resolve, reject: Reject) => void;
 
 export type MethodData = [{
-    supportedMethods: supportedMethods;
+  supportedMethods: supportedMethods;
 }];
 
 export interface Details {
-    total: Item;
-    displayItems: Item[];
-    shippingOptions?: ShippingOption[];
+  total: Item;
+  displayItems: Item[];
+  shippingOptions?: ShippingOption[];
 }
 
 export interface Options {
-    requestShipping?: boolean;
-    requestPayerEmail?: boolean;
-    requestPayerPhone?: boolean;
+  requestShipping?: boolean;
+  requestPayerEmail?: boolean;
+  requestPayerPhone?: boolean;
 }
 
 export interface PaymentRequestParamsObject {
-    methodData: MethodData;
-    details: Details;
-    options?: Options;
-    onShowSuccess: (paymentResponse: any, resolve: Resolve, reject: Reject) => void;
-    onShowFail: (err: any) => void;
-    onShippingAddressChange?: Callback;
-    onShippingOptionChange?: Callback;
+  methodData: MethodData;
+  details: Details;
+  options?: Options;
+  onShowSuccess: (paymentResponse: any, resolve: Resolve, reject: Reject) => void;
+  onShowFail: (err: any) => void;
+  onShippingAddressChange?: Callback;
+  onShippingOptionChange?: Callback;
 }
 
 export interface PaymentRequestParamsFunction {
-    (dispatch: any, getState: any): PaymentRequestParamsObject;
+  (dispatch: any, getState: any): PaymentRequestParamsObject;
 }
 
 export interface PaymentRequestParams extends PaymentRequestParamsObject, PaymentRequestParamsFunction {}
 
 export interface PaymentRequestInterface {
-    isSupported: boolean;
-    show: () => void;
-    abort: () => void;
+  isSupported: boolean;
+  show: () => void;
+  abort: () => void;
 }
 
 export type PaymentRequestEnancher = (params: PaymentRequestParams) =>
-    (WrappedComponent: StatelessComponent<any>) => any;
+  (WrappedComponent: StatelessComponent<any>) => any;
 
 declare const paymentRequest: PaymentRequestEnancher;
 export default paymentRequest;

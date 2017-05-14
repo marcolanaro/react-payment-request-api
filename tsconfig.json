@@ -1,19 +1,19 @@
 {
-    "version": "2.0.3",
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceMap": true,
-        "noLib": false,
-        "declaration": true,
-        "jsx": "react",
-        "outDir": "./dist"
-    },
-    "files": [
-        "./src/index.tsx"
-    ]
+  "version": "2.0.3",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "noLib": false,
+    "declaration": true,
+    "jsx": "react",
+    "outDir": "./dist"
+  },
+  "files": [
+    "./src/index.tsx"
+  ]
 }
