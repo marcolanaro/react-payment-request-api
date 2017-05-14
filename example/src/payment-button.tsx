@@ -1,25 +1,25 @@
-import paymentRequest from "react-payment-request-api";
-import { PaymentRequestParams, Details } from "react-payment-request-api";
+import paymentRequest from 'react-payment-request-api';
+import { PaymentRequestParams, Details } from 'react-payment-request-api';
 
-import Button from "./button";
+import Button from './button';
 
 const details: Details = {
   displayItems: [{
-    label: "Original donation amount",
-    amount: { currency: "USD", value: "65.00" },
+    label: 'Original donation amount',
+    amount: { currency: 'USD', value: '65.00' },
   }, {
-    label: "Friends and family discount",
-    amount: { currency: "USD", value: "-10.00" },
+    label: 'Friends and family discount',
+    amount: { currency: 'USD', value: '-10.00' },
   }],
   total: {
-    label: "Total due",
-    amount: { currency: "USD", value : "55.00" },
+    label: 'Total due',
+    amount: { currency: 'USD', value : '55.00' },
   },
 };
 
 const config = {
   methodData: [{
-    supportedMethods: ["visa", "mastercard", "diners"],
+    supportedMethods: ['visa', 'mastercard', 'diners'],
   }],
   details: details,
   options: {
@@ -28,18 +28,20 @@ const config = {
     requestPayerPhone: true,
   },
   onShowSuccess: (result, resolve, reject): void => {
-    console.log("result", result);
+    /* tslint:disable-next-line:no-console */
+    console.log('Result:', result);
     // make the payment
     setTimeout(resolve, 2000);
   },
-  onShowFail: (error) => alert("Fail!"),
+  onShowFail: (error) => alert('Fail!'),
   onShippingAddressChange: (request, resolve, reject): void => {
-    console.log("shippingAddress", request.shippingAddress);
+    /* tslint:disable-next-line:no-console */
+    console.log('ShippingAddress:', request.shippingAddress);
     // recalculate details
     details.shippingOptions = [{
-      id: "all",
-      label: "Wherever you want for free",
-      amount: { currency: "USD", value: "0.00" },
+      id: 'all',
+      label: 'Wherever you want for free',
+      amount: { currency: 'USD', value: '0.00' },
       selected: true
     }];
     resolve(details);

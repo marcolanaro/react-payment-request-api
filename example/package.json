@@ -3,12 +3,17 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "lint": "tslint './src/**/*.tsx'",
     "start": "webpack-dev-server"
   },
   "devDependencies": {
     "@types/react": "^15.0.20",
     "@types/react-dom": "^0.14.23",
     "ts-loader": "^2.0.3",
+    "tslint": "^5.2.0",
+    "tslint-eslint-rules": "^4.0.0",
+    "tslint-microsoft-contrib": "^4.0.1",
+    "tslint-react": "^3.0.0",
     "typescript": "^2.2.1",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"

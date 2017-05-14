@@ -1,8 +1,8 @@
-import * as React from "react";
-import { PaymentRequestInterface } from "react-payment-request-api";
+import * as React from 'react';
+import { PaymentRequestInterface } from 'react-payment-request-api';
 
 export interface OwnProps {
-  style: any;
+  style: object;
 }
 
 const Button: React.StatelessComponent<PaymentRequestInterface & OwnProps> = ({
