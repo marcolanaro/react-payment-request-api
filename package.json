@@ -7,12 +7,12 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "tslint": "tslint -c ./tslint.json './src/**/*.ts'",
-    "prepublish": "npm run clean && npm run tslint && npm run build"
+    "lint": "tslint -c ./tslint.json './src/**/*.{ts,tsx}'",
+    "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "repository": {
-      "type": "git",
-      "url": "https://github.com/marcolanaro/react-payment-request-api.git"
+    "type": "git",
+    "url": "https://github.com/marcolanaro/react-payment-request-api.git"
   },
   "bugs": {
     "url": "https://github.com/marcolanaro/react-payment-request-api/issues"
@@ -36,14 +36,17 @@
     "react-dom": "^15.3.2",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.9.5",
-    "tslint": "^3.15.1",
+    "tslint": "^5.2.0",
+    "tslint-eslint-rules": "^4.0.0",
+    "tslint-microsoft-contrib": "^4.0.1",
+    "tslint-react": "^3.0.0",
     "typescript": "^2.0.3"
   },
   "dependencies": {
     "react": ">=0.14.0"
   },
   "pre-commit": [
-    "tslint",
+    "lint",
     "build"
   ]
 }
