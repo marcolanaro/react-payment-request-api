@@ -1,7 +1,7 @@
 /* tslint:disable:no-any */
 import { StatelessComponent } from 'react';
 
-export type supportedMethod = 'amex' | 'diners' | 'discover' | 'jcb' | 'maestro' | 'mastercard' | 'unionpay' | 'visa';
+export type supportedMethod = 'amex' | 'diners' | 'discover' | 'jcb' | 'maestro' | 'mastercard' | 'unionpay' | 'mir' | 'visa';
 
 export type supportedMethods = supportedMethod[];
 
