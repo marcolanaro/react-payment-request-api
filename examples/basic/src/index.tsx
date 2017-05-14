@@ -7,7 +7,7 @@ const App = () =>
   <PaymentButton
     style={{
       padding: '1rem',
-      backgroundColor: 'MediumSlateBlue',
+      backgroundColor: 'CornflowerBlue',
       color: 'white',
       fontSize: '10vh',
     }}

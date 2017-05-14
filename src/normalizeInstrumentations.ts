@@ -1,21 +1,15 @@
-import {
-  Instrumentations,
-  Instrumentation,
-  BasicCardInstrumentation,
-} from './types';
-
-export default (methodData: Instrumentations) => {
-  const preChrome57Instrumentations = methodData
-    .reduce((prec: null | Instrumentation, instrumentation: Instrumentation) => {
-      if (instrumentation.supportedMethods[0] === 'basic-card') {
-        const basicCardInstrumentation = instrumentation as BasicCardInstrumentation;
-        if (basicCardInstrumentation.data) {
-          return { supportedMethods: basicCardInstrumentation.data.supportedNetworks };
+export default (methodData: PaymentMethodData[]) => {
+  const preChrome57PaymentMethodData = methodData
+    .reduce((prec: PaymentMethodData, paymentMethodData: PaymentMethodData) => {
+      if (paymentMethodData.supportedMethods && paymentMethodData.supportedMethods[0] === 'basic-card') {
+        const basicCardPaymentMethodData = paymentMethodData;
+        if (basicCardPaymentMethodData.data) {
+          return { supportedMethods: basicCardPaymentMethodData.data.supportedNetworks };
         }
       }
       return prec;
     }, null);
-  return preChrome57Instrumentations
-    ? [ preChrome57Instrumentations, ...methodData ]
+  return preChrome57PaymentMethodData
+    ? [ preChrome57PaymentMethodData, ...methodData ]
     : [ ...methodData ];
 };

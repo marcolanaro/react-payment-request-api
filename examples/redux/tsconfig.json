@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "declaration": true,
+    "declaration": false,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["es6", "dom"],
@@ -10,18 +11,16 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
-    "removeComments": true,
     "outDir": "./dist",
+    "removeComments": true,
     "rootDir": "./src",
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
-    "types": ["jest"]
+    "types": []
   },
   "exclude": [
-    "examples",
-    "node_modules",
-    "dist"
+    "node_modules"
   ]
 }

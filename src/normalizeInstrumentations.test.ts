@@ -1,11 +1,10 @@
 import normalizeInstrumentations from './normalizeInstrumentations';
-import { Instrumentations } from './types';
 
 describe('normalizeInstrumentations', () => {
 
   describe('when instrumentations does not contain basicCard', () => {
     it('should return the same instrumentations', () => {
-      const instrumentations = [] as Instrumentations;
+      const instrumentations = [] as PaymentMethodData[];
 
       expect(normalizeInstrumentations(instrumentations)).toEqual(instrumentations);
     });
@@ -15,7 +14,7 @@ describe('normalizeInstrumentations', () => {
     it('should return the same instrumentations', () => {
       const instrumentations = [{
         supportedMethods: ['basic-card'],
-      }] as Instrumentations;
+      }] as PaymentMethodData[];
 
       expect(normalizeInstrumentations(instrumentations)).toEqual(instrumentations);
     });
@@ -28,7 +27,7 @@ describe('normalizeInstrumentations', () => {
         data: {
           supportedNetworks: ['visa', 'mastercard'],
         },
-      }] as Instrumentations;
+      }] as PaymentMethodData[];
 
       expect(normalizeInstrumentations(instrumentations)).toEqual([
         {

@@ -1,15 +1,18 @@
-import paymentRequest from 'react-payment-request-api';
-import { PaymentRequestParams, Details } from 'react-payment-request-api';
+import paymentRequest, { PaymentRequestParams } from 'react-payment-request-api';
 
-import Button from './button';
+import Button, { OwnProps } from './button';
 
-const details: Details = {
+const details: PaymentDetails = {
   displayItems: [{
     label: 'Original donation amount',
     amount: { currency: 'USD', value: '65.00' },
   }, {
     label: 'Friends and family discount',
     amount: { currency: 'USD', value: '-10.00' },
+  }, {
+    label: 'Delivery tax',
+    pending: true,
+    amount: { currency: 'USD', value: '10.00' },
   }],
   total: {
     label: 'Total due',
@@ -48,6 +51,11 @@ const config = {
       amount: { currency: 'USD', value: '0.00' },
       selected: true
     }];
+    details.displayItems![2] = {
+      label: 'Tax',
+      pending: false,
+      amount: { currency: 'USD', value: '8.00' },
+    };
     resolve(details);
   },
   onShippingOptionChange: (request, resolve, reject): void => {
@@ -55,4 +63,4 @@ const config = {
   },
 } as PaymentRequestParams;
 
-export default paymentRequest(config)(Button);
+export default paymentRequest<OwnProps>(config)(Button);
