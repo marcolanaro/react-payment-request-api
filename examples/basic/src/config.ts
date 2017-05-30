@@ -1,6 +1,4 @@
-import paymentRequest, { PaymentRequestParams } from 'react-payment-request-api';
-
-import Button, { OwnProps } from './button';
+import { PaymentRequestParams } from 'react-payment-request-api';
 
 const details: PaymentDetails = {
   displayItems: [{
@@ -20,7 +18,7 @@ const details: PaymentDetails = {
   },
 };
 
-const config = {
+const getConfig = () => ({
   methodData: [{
     supportedMethods: ['basic-card'],
     data: {
@@ -61,6 +59,6 @@ const config = {
   onShippingOptionChange: (request, resolve, reject): void => {
     resolve(details);
   },
-} as PaymentRequestParams;
+}) as PaymentRequestParams;
 
-export default paymentRequest<OwnProps>(config)(Button);
+export default getConfig;

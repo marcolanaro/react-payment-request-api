@@ -47,49 +47,23 @@ export const show = (params: PaymentRequestParams) => () => {
     .catch((err) => params.onShowFail(err));
 };
 
-const paymentRequest = <TProps extends Object>(params?: PaymentRequestParamsConfig) => (
+const paymentRequest = <TProps extends Object>() => (
   WrappedComponent: AnyComponent<TProps, any> // tslint:disable-line:no-any
-): React.ComponentClass<TProps> => (
-  class ExtendedComponent extends React.Component<TProps, void> {
-    static contextTypes =  {
-      store: React.PropTypes.object,
-    };
-
-    context: {
-      store: {
-        dispatch: (payload: any) => any; // tslint:disable-line:no-any
-        getState: () => any; // tslint:disable-line:no-any
+): React.ComponentClass<TProps & PaymentRequestParamsConfig> => (
+  class ExtendedComponent extends React.Component<TProps & PaymentRequestParamsConfig, void> {
+    render() {
+      const { config, ...rest } = this.props as any; // tslint:disable-line:no-any
+      if (!isSupported || !config) {
+        return <WrappedComponent {...rest as any} />; // tslint:disable-line:no-any
       }
-    };
-
-    getEnhancedComponent(paymentRequestParams: PaymentRequestParams) {
       return (
         <WrappedComponent
-          {...this.props as any} // tslint:disable-line:no-any
+          {...rest as any} // tslint:disable-line:no-any
           isSupported={true}
-          show={show(paymentRequestParams)}
+          show={show(config)}
           abort={abort}
         />
       );
-    }
-
-    render() {
-      const { props } = this;
-      if (!isSupported || !params) {
-        return <WrappedComponent {...props as any} />; // tslint:disable-line:no-any
-      }
-      if (typeof params === 'function') {
-        if (this.context.store) {
-          return this.getEnhancedComponent(params(
-            this.context.store.dispatch,
-            this.context.store.getState
-          ));
-        } else {
-          console.warn(' %cRedux store not found', 'color: tomato;');
-          return <WrappedComponent {...props as any} />; // tslint:disable-line:no-any
-        }
-      }
-      return this.getEnhancedComponent(params);
     }
   }
 );

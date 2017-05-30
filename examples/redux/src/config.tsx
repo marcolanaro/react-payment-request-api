@@ -1,8 +1,4 @@
-import paymentRequest, { PaymentRequestParams } from 'react-payment-request-api';
-import { Dispatch } from 'redux';
-
-import { State } from './index';
-import Button, { OwnProps } from './button';
+import { PaymentRequestParams } from 'react-payment-request-api';
 
 const details: PaymentDetails = {
   displayItems: [{
@@ -22,11 +18,11 @@ const details: PaymentDetails = {
   },
 };
 
-const config = (dispatch: Dispatch<State>, getState: () => State) => ({
+const getConfig = (supportedPaymentCards: string[], onShowSuccess: () => void) => ({
   methodData: [{
     supportedMethods: ['basic-card'],
     data: {
-      supportedNetworks: getState().supportedPaymentCards,
+      supportedNetworks: supportedPaymentCards,
     },
   }],
   details: details,
@@ -36,7 +32,7 @@ const config = (dispatch: Dispatch<State>, getState: () => State) => ({
     requestPayerPhone: true,
   },
   onShowSuccess: (result, resolve, reject): void => {
-    dispatch({ type: 'PROCESSING_PAYMENT', payload: { backgroundColor: 'AliceBlue' } })
+    onShowSuccess();
     /* tslint:disable-next-line:no-console */
     console.log('Result:', result);
     // make the payment
@@ -66,4 +62,4 @@ const config = (dispatch: Dispatch<State>, getState: () => State) => ({
   },
 }) as PaymentRequestParams;
 
-export default paymentRequest<OwnProps>(config)(Button);
+export default getConfig;

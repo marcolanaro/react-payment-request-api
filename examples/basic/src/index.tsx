@@ -1,10 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import PaymentButton from './payment-button';
+import Button from './button';
+import getConfig from './config';
 
 const App = () =>
-  <PaymentButton
+  <Button
+    config={getConfig()}
     style={{
       padding: '1rem',
       backgroundColor: 'CornflowerBlue',

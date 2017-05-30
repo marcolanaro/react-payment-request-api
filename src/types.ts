@@ -12,11 +12,9 @@ export type PaymentRequestParams = {
   onShippingOptionChange?: Callback;
 };
 
-export type PaymentRequestParamsRedux = {
-  (dispatch: any, getState: any): PaymentRequestParams; // tslint:disable-line:no-any
-};
-
-export type PaymentRequestParamsConfig = PaymentRequestParams | PaymentRequestParamsRedux;
+export interface PaymentRequestParamsConfig {
+  config: PaymentRequestParams;
+}
 
 export interface PaymentRequestInterface {
   isSupported: boolean;
