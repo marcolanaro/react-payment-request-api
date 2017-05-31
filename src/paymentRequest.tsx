@@ -12,7 +12,7 @@ import {
 
 let request: PaymentRequest;
 
-const isSupported = !!(window as any).PaymentRequest; // tslint:disable-line:no-any
+const isSupported = () => !!(window as any).PaymentRequest; // tslint:disable-line:no-any
 
 const addEventListener = (requestListener: PaymentRequest, event: string, callback?: Callback) => {
   if (!!callback) {
@@ -39,7 +39,7 @@ export const show = (params: PaymentRequestParams) => () => {
 
   request.show()
     .then((paymentResponse) => {
-      new Promise((resolve: Resolve, reject: Reject) =>
+      return new Promise((resolve: Resolve, reject: Reject) =>
         params.onShowSuccess(paymentResponse, resolve, reject))
           .then(() => paymentResponse.complete('success'))
           .catch(() => paymentResponse.complete('fail'));
@@ -53,8 +53,8 @@ const paymentRequest = <TProps extends Object>() => (
   class ExtendedComponent extends React.Component<TProps & PaymentRequestParamsConfig, void> {
     render() {
       const { config, ...rest } = this.props as any; // tslint:disable-line:no-any
-      if (!isSupported || !config) {
-        return <WrappedComponent {...rest} />;
+      if (!isSupported() || !config) {
+        return <WrappedComponent {...rest} isSupported={false} />;
       }
       return (
         <WrappedComponent
