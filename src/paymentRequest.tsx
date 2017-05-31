@@ -54,11 +54,11 @@ const paymentRequest = <TProps extends Object>() => (
     render() {
       const { config, ...rest } = this.props as any; // tslint:disable-line:no-any
       if (!isSupported || !config) {
-        return <WrappedComponent {...rest as any} />; // tslint:disable-line:no-any
+        return <WrappedComponent {...rest} />;
       }
       return (
         <WrappedComponent
-          {...rest as any} // tslint:disable-line:no-any
+          {...rest}
           isSupported={true}
           show={show(config)}
           abort={abort}
