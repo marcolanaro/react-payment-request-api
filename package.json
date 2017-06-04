@@ -2,10 +2,10 @@
   "name": "react-payment-request-api",
   "version": "1.0.0",
   "description": "React high order component that expose the payment request api",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "clean": "rm -rf ./dist",
+    "clean": "rm -rf ./lib",
     "build": "tsc",
     "lint": "tslint -c ./tslint.json './src/**/*.{ts,tsx}'",
     "test": "jest --config jest.json",

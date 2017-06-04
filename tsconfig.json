@@ -11,7 +11,7 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "removeComments": true,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "rootDir": "./src",
     "sourceMap": true,
     "strictNullChecks": true,
@@ -22,6 +22,6 @@
   "exclude": [
     "examples",
     "node_modules",
-    "dist"
+    "lib"
   ]
 }
