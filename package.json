@@ -49,7 +49,6 @@
     "typescript": "^2.3"
   },
   "dependencies": {
-    "@types/paymentrequest": "0.0.1",
     "react": "^15.5.0",
     "react-dom": "^15.5.0"
   },
