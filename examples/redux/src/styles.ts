@@ -34,13 +34,20 @@ export default {
     justifyContent: 'center',
   } as React.CSSProperties,
   button: {
-    backgroundColor: '#48b5f2',
-    border: '1px solid #84acc3',
-    color: '#0f4b6d',
     boxShadow: '0 0 1px #fff inset',
     borderRadius: '1rem',
     padding: '1rem 2rem',
     font: '3rem Calibri, Arial, sans-serif',
     textShadow: '1px 1px 0 rgba(255,255,255,0.4)',
+  },
+  toPay: {
+    backgroundColor: '#48b5f2',
+    border: '1px solid #84acc3',
+    color: '#0f4b6d',
+  },
+  payed: {
+    backgroundColor: '#48f28c',
+    border: '1px solid #84c38c',
+    color: '#0f6d1c',
   },
 };

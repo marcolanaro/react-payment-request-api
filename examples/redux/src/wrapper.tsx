@@ -31,7 +31,7 @@ const mapState2Props = (state: State): StateProps => ({
 });
 
 const mapDispatch2Props = (dispatch: Dispatch<State>): DispatchProps => ({
-  onShowSuccess: () => dispatch({ type: 'PROCESSING_PAYMENT', payload: { backgroundColor: 'AliceBlue' } }),
+  onShowSuccess: () => dispatch({ type: 'PROCESSING_PAYMENT' }),
 });
 
 export default connect<StateProps, DispatchProps, OwnProps>(mapState2Props, mapDispatch2Props)(Wrapper);

@@ -6,13 +6,13 @@ export interface State {
 
 const initialState = {
   supportedPaymentCards: ['visa'],
-  backgroundColor: 'CornflowerBlue',
+  payed: false,
 };
 
 const reducers = (previousState: State = initialState, action: Action<any>) => { // tslint:disable-line:no-any
   switch (action.type) {
     case 'PROCESSING_PAYMENT':
-      return ({ ...previousState, backgroundColor: action.payload.backgroundColor });
+      return ({ ...previousState, payed: true });
     default:
       return ({ ...previousState });
   }
