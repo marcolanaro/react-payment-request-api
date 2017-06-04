@@ -5,6 +5,16 @@
   <strong>
     <a href="https://facebook.github.io/react/">React</a> high order component to drive <a href="https://www.w3.org/TR/payment-request/">payment request</a> widget on react applications 💳.
   </strong>
+  <br><br>
+  <a href="https://npmjs.com/package/react-payment-request-api">
+    <img src="https://img.shields.io/npm/dm/react-payment-request-api.svg">
+  </a>
+  <a href="https://npmjs.com/package/react-payment-request-api">
+    <img src="https://img.shields.io/npm/v/react-payment-request-api.svg">
+  </a>
+  <a href="https://github.com/marcolanaro/react-payment-request-api/blob/master/LICENSE.md">
+    <img src="https://img.shields.io/github/license/marcolanaro/react-payment-request-api.svg">
+  </a>
 </p>
 
 
