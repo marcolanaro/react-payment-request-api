@@ -14,14 +14,16 @@ interface DispatchProps {
   onShowSuccess: () => void;
 }
 
-const Wrapper: React.StatelessComponent<StateProps & DispatchProps> = ({ supportedPaymentCards, onShowSuccess }) =>
+interface OwnProps {
+  style: React.CSSProperties;
+}
+
+const Wrapper: React.StatelessComponent<StateProps & DispatchProps & OwnProps> = ({
+  style, supportedPaymentCards, onShowSuccess,
+}) =>
   <Button
     config={getConfig(supportedPaymentCards, onShowSuccess)}
-    style={{
-      padding: '1rem',
-      color: 'white',
-      fontSize: '10vh',
-    }}
+    style={style}
   />;
 
 const mapState2Props = (state: State): StateProps => ({
@@ -32,4 +34,4 @@ const mapDispatch2Props = (dispatch: Dispatch<State>): DispatchProps => ({
   onShowSuccess: () => dispatch({ type: 'PROCESSING_PAYMENT', payload: { backgroundColor: 'AliceBlue' } }),
 });
 
-export default connect<StateProps, DispatchProps, {}>(mapState2Props, mapDispatch2Props)(Wrapper);
+export default connect<StateProps, DispatchProps, OwnProps>(mapState2Props, mapDispatch2Props)(Wrapper);

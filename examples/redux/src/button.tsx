@@ -3,7 +3,7 @@ import paymentRequest, { PaymentRequestInterface } from 'react-payment-request-a
 import { connect } from 'react-redux';
 
 export interface OwnProps {
-  style: object;
+  style: React.CSSProperties;
 }
 
 export interface StateProps {

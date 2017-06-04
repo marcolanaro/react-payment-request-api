@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <strong>
-    <a href="https://facebook.github.io/react/">React</a> high order component that expose the standard <a href="https://www.w3.org/TR/payment-request/">payment request api</a>.
+    <a href="https://facebook.github.io/react/">React</a> high order component to drive <a href="https://www.w3.org/TR/payment-request/">payment request</a> widget on react applications 💳.
   </strong>
 </p>
 
@@ -22,102 +22,68 @@ You can find a working demo [here](https://lanaro.net/react-payment-request-api/
 npm install react-payment-request-api --save
 ```
 
-## What's it look like?
+## Usage
 
-Consume the wrapped component:
+Consume the UI component in the hight order component `button.js`:
 
 ```js
 import React from "react";
+import paymentRequest from 'react-payment-request-api';
 
 const Button = ({ show, isSupported }) => isSupported
     ? <button onClick={show}>Pay now!</button>
     : <span>Payment request not supported</span>;
 
-export default Button;
+export default paymentRequest<OwnProps>()(Button);
 ```
 
-Configure the high order component:
+Pass the configuration to the high order component `smartComponent.js`:
 
 ```js
 import React from "react";
-import paymentRequest from "react-payment-request-api";
 
-import YourButtonComponent from "./button";
+import Button from "./button";
 
-const details = {
-    displayItems: [{
-        label: "Original donation amount",
-        amount: { currency: "USD", value: "65.00" },
-    }, {
-        label: "Friends and family discount",
-        amount: { currency: "USD", value: "-10.00" },
-    }],
-    total: {
-        label: "Total due",
-        amount: { currency: "USD", value : "55.00" },
-    },
-};
+const SmartComponent = (config) =>
+  <Button config={config} foo="bar" />;
 
-const config = {
-    methodData: [{
-        supportedMethods: ["visa", "mastercard", "diners"],
-    }],
-    details: details,
-    options: {
-        requestShipping: true,
-        requestPayerEmail: true,
-        requestPayerPhone: true,
-    },
-    onShowSuccess: (result, resolve, reject) => {
-        console.log("result", result);
-        // make the payment
-        setTimeout(resolve, 2000);
-    },
-    onShowFail: (error) => alert("Fail!"),
-    onShippingAddressChange: (request, resolve, reject) => {
-        console.log("shippingAddress", request.shippingAddress);
-        // recalculate details
-        details.shippingOptions = [{
-            id: "all",
-            label: "Wherever you want for free",
-            amount: { currency: "USD", value: "0.00" },
-            selected: true
-        }];
-        resolve(details);
-    },
-    onShippingOptionChange: (request, resolve, reject) => {
-        // recalculate details
-        resolve(details);
-    },
-};
-
-export default paymentRequest(config)(YourButtonComponent);
+export default SmartComponent;
 ```
 
-## What if I use Redux?
+## FAQ
 
-In this case you can define the configuration as a function that accept two parameters. The parameters will be the `dispatch` and `getState` functions that will permit you to interact with the store in the lifecycle of the payment request.
+#### How does it work?
 
-```js
-import React from "react";
-import paymentRequest from "react-payment-request-api";
+It takes a configuration prop that define how the native widget should behave and any other property you want to pass to the UI component. It spread all the properties a part from the configuration to the enhanced UI component. The UI component will also receive other props that will help improving the experience allowing complete control on the renderer and on the action handler.
 
-import YourButtonComponent from "./button";
+#### How does it support browser that were implementing the first draft of Payment Request?
 
-const config = (dispatch, getState) => ({
-    ...,
-    onShowSuccess: (result, resolve, reject): void => {
-        dispatch({ TYPE: 'MAKE_PAYMENT' });
-            .then(_ => resolve());
-    },
-    onShippingAddressChange: (request, resolve, reject) => {
-        resolve(selectNewDetails(getState(), request));
-    },
-    ...,
-});
+Chrome v. 53.0 - 55.00 was implementing a draft of the standard for Payment Request. Since then, there have been some evolutions on how to define `paymentMethods` in the configuration. Specifically, the payment methos should now be defined as:
 
-export default paymentRequest(config)(YourButtonComponent);
+```bash
+{
+  supportedMethods: ['basic-card'],
+  data: {
+    supportedNetworks: ['visa', 'mastercard'],
+  },
+}
 ```
+
+The library de-normalize the configuration to be able to support the old standard that looks like:
+
+```bash
+{
+  supportedMethods: ['visa', 'mastercard']
+}
+```
+
+#### Does it support Redux or any other flux implementation?
+
+Yes, with version 1.0 we have changed the interface allowing the user to inject the configuration from the parent component. In this way it does not matter which flux implementation you are using. At the same time, we are preserving the high order component pattern so you have complete control on the renderer and on the action handler.
+
+#### Does it support Typescript?
+
+Yes, you don't need to install any typescript dependecies because types come with the library. It export `PaymentRequestParams` (injected configuration) and `PaymentRequestInterface` (UI component extended props) typescript interfaces. All the [examples](https://github.com/marcolanaro/react-payment-request-api/tree/master/examples) are written in typescript.
 
 ## API
 
@@ -127,7 +93,7 @@ Parameter   | Type                           | Description
 ----------- | ------------------------------ | -----------
 isSupported | boolean                        | True if the payment request api is supported by the browser.
 show        | function: () => PaymentRequest | It will begin the process when the merchant site want to create a new [PaymentRequest](https://www.w3.org/TR/payment-request/#paymentrequest-interface).
-abort       | function: () => void           | You can intentionally [abort a PaymentRequest](https://www.w3.org/TR/payment-request/#abort) by calling the abort method.
+abort       | function: () => void           | You can intentionally [abort a PaymentRequest](https://www.w3.org/TR/payment-request/#abort) by calling the abort method after show has been called.
 
 Configuration of the high order component:
 
@@ -140,12 +106,6 @@ onShowSuccess           | Promise based callback: (result, resolve, reject)  | T
 onShowFail              | Promise based callback: (error)                    | The handler will be executed if the filling of the form is [not successfull](https://www.w3.org/TR/payment-request/#dom-paymentcomplete-fail) (like when the user dismiss the form).
 onShippingAddressChange | Promise based callback: (request, resolve, reject) | The handler will be executed if the [shipping address has change](https://www.w3.org/TR/payment-request/#idl-def-paymentrequestupdateevent). You can change the request and then resolve the promise.
 onShippingOptionChange  | Promise based callback: (request, resolve, reject) | The handler will be executed if the [shipping option has change](https://www.w3.org/TR/payment-request/#idl-def-paymentrequestupdateevent). You can change the request and then resolve the promise.
-
-## Typescript
-
-Typescript is completely optional. The package is exported as ES6/commonjs module.<br />
-The types are exported under `dist/types.d.ts`. You can find an example of usage [here](https://github.com/marcolanaro/react-payment-request-api/tree/master/examples).
-
 
 ## License
 
