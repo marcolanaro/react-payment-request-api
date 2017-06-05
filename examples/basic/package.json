@@ -21,6 +21,6 @@
   "dependencies": {
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
-    "react-payment-request-api": "^1.0.0"
+    "react-payment-request-api": "^1.0.1"
   }
 }
