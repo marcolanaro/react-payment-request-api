@@ -15,6 +15,7 @@
   <a href="https://github.com/marcolanaro/react-payment-request-api/blob/master/LICENSE.md">
     <img src="https://img.shields.io/github/license/marcolanaro/react-payment-request-api.svg">
   </a>
+  <img src="https://img.shields.io/travis/marcolanaro/react-payment-request-api.svg">
 </p>
 
 
