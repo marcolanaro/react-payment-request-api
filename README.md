@@ -7,15 +7,17 @@
   </strong>
   <br><br>
   <a href="https://npmjs.com/package/react-payment-request-api">
-    <img src="https://img.shields.io/npm/dm/react-payment-request-api.svg">
-  </a>
-  <a href="https://npmjs.com/package/react-payment-request-api">
     <img src="https://img.shields.io/npm/v/react-payment-request-api.svg">
   </a>
   <a href="https://github.com/marcolanaro/react-payment-request-api/blob/master/LICENSE.md">
     <img src="https://img.shields.io/github/license/marcolanaro/react-payment-request-api.svg">
   </a>
   <img src="https://img.shields.io/travis/marcolanaro/react-payment-request-api.svg">
+  <img src="http://img.badgesize.io/https://unpkg.com/react-payment-request-api/dist/react-payment-request-api.min.js?compression=gzip&label=gzip%20size">
+  <img src="http://img.badgesize.io/https://unpkg.com/react-payment-request-api/dist/react-payment-request-api.min.js?label=size">
+  <a href="https://npmjs.com/package/react-payment-request-api">
+    <img src="https://img.shields.io/npm/dm/react-payment-request-api.svg">
+  </a>
 </p>
 
 

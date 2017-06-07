@@ -1,6 +1,6 @@
 {
   "name": "react-payment-request-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React high order component that expose the payment request api",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
