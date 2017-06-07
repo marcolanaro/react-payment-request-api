@@ -3,3 +3,4 @@ npm-debug.log
 dist
 lib
 .DS_Store
+.rpt2_cache

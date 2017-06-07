@@ -23,6 +23,7 @@
     "examples",
     "node_modules",
     "lib",
+    "dist",
     "**/*.test.*"
   ]
 }
