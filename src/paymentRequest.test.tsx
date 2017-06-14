@@ -10,7 +10,7 @@ import getConfig from './paymentRequest.fixture';
 
 declare var global: any; // tslint:disable-line:no-any
 
-const generator = (showMethod: string = 'resolve') => {
+const generator = (removeOptions: boolean = false, showMethod: string = 'resolve') => {
   const complete = jest.fn();
   const showResponse = showMethod === 'resolve' ? { complete } : 'error';
   const show = jest.fn().mockImplementation(() => Promise[showMethod](showResponse));
@@ -27,7 +27,7 @@ const generator = (showMethod: string = 'resolve') => {
 
   const UIComponent: React.StatelessComponent<PaymentRequestInterface> = () => <div />;
   const PaymentComponent = paymentRequest<{}>()(UIComponent);
-  const wrapper = shallow(<PaymentComponent config={getConfig(onShowFail)} data-test={true} />);
+  const wrapper = shallow(<PaymentComponent config={getConfig(onShowFail, removeOptions)} data-test={true} />);
   return {
     complete,
     show,
@@ -107,6 +107,12 @@ describe('PaymentRequest', () => {
           wrapper.find(UIComponent).prop('show')();
           expect(PaymentRequest).toHaveBeenCalledWith(getConfig().methodData, getConfig().details, getConfig().options);
         });
+
+        it('should force empty options if not provided', () => {
+          const { wrapper, UIComponent } = generator(true);
+          wrapper.find(UIComponent).prop('show')();
+          expect(PaymentRequest).toHaveBeenCalledWith(getConfig().methodData, getConfig().details, {});
+        });
       });
 
       describe('PaymentRequest.addEventListener API', () => {
@@ -183,7 +189,7 @@ describe('PaymentRequest', () => {
     describe('when PaymentRequest.show API is rejected', () => {
       describe('PaymentResponse.complete API', () => {
         it('should not be executed', () => {
-          const { wrapper, UIComponent, complete } = generator('reject');
+          const { wrapper, UIComponent, complete } = generator(false, 'reject');
           wrapper.find(UIComponent).prop('show')();
           return Promise.resolve().then(() =>
             Promise.resolve().then(() =>
@@ -195,7 +201,7 @@ describe('PaymentRequest', () => {
 
       describe('config.onShowFail', () => {
         it('should be executed once', () => {
-          const { wrapper, UIComponent, onShowFail } = generator('reject');
+          const { wrapper, UIComponent, onShowFail } = generator(false, 'reject');
           wrapper.find(UIComponent).prop('show')();
           return Promise.resolve().then(() =>
             Promise.resolve().then(() =>
@@ -205,7 +211,7 @@ describe('PaymentRequest', () => {
         });
 
         it('should be executed with error', () => {
-          const { wrapper, UIComponent, onShowFail } = generator('reject');
+          const { wrapper, UIComponent, onShowFail } = generator(false, 'reject');
           wrapper.find(UIComponent).prop('show')();
           return Promise.resolve().then(() =>
             Promise.resolve().then(() =>

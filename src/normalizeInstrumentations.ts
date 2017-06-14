@@ -3,7 +3,7 @@ export default (methodData: PaymentMethodData[]) => {
     .reduce((prec: PaymentMethodData, paymentMethodData: PaymentMethodData) => {
       if (paymentMethodData.supportedMethods && paymentMethodData.supportedMethods[0] === 'basic-card') {
         const basicCardPaymentMethodData = paymentMethodData;
-        if (basicCardPaymentMethodData.data) {
+        if (basicCardPaymentMethodData.data && !!basicCardPaymentMethodData.data.supportedNetworks) {
           return { supportedMethods: basicCardPaymentMethodData.data.supportedNetworks };
         }
       }

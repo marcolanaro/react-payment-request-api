@@ -5,7 +5,7 @@ const details: PaymentDetails = {
   total: {},
 };
 
-const getConfig = (onShowFail?: jest.Mock<{}>) => ({
+const getConfig = (onShowFail?: jest.Mock<{}>, removeOptions?: boolean) => ({
   methodData: [{
     supportedMethods: ['basic-card'],
     data: {
@@ -13,7 +13,7 @@ const getConfig = (onShowFail?: jest.Mock<{}>) => ({
     },
   }],
   details: details,
-  options: {
+  options: removeOptions ? undefined : {
     requestShipping: true,
   },
   onShowSuccess: (result, resolve, reject): void => {

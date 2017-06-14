@@ -11,9 +11,17 @@ describe('normalizeInstrumentations', () => {
   });
 
   describe('when instrumentations contains basicCard but no supportedNetworks', () => {
-    it('should return the same instrumentations', () => {
+    it('should return the same instrumentations when no data is defined', () => {
       const instrumentations = [{
         supportedMethods: ['basic-card'],
+      }] as PaymentMethodData[];
+
+      expect(normalizeInstrumentations(instrumentations)).toEqual(instrumentations);
+    });
+    it('should return the same instrumentations when data is empty', () => {
+      const instrumentations = [{
+        supportedMethods: ['basic-card'],
+        data: {},
       }] as PaymentMethodData[];
 
       expect(normalizeInstrumentations(instrumentations)).toEqual(instrumentations);
