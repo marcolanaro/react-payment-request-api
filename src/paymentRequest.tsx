@@ -4,6 +4,7 @@ import { AnyComponent } from './utils';
 import normalizeInstrumentations from './normalizeInstrumentations';
 import {
   PaymentRequestParamsConfig,
+  PaymentRequestInterface,
   PaymentRequestParams,
   Callback,
   Resolve,
@@ -48,7 +49,7 @@ export const show = (params: PaymentRequestParams) => () => {
 };
 
 const paymentRequest = <TProps extends Object>() => (
-  WrappedComponent: AnyComponent<TProps, any> // tslint:disable-line:no-any
+  WrappedComponent: AnyComponent<TProps & PaymentRequestInterface, any> // tslint:disable-line:no-any
 ): React.ComponentClass<TProps & PaymentRequestParamsConfig> => (
   class ExtendedComponent extends React.Component<TProps & PaymentRequestParamsConfig, void> {
     render() {
