@@ -23,7 +23,7 @@
 
 ## Browser support
 
-At the moment the [payment request api](https://developers.google.com/web/fundamentals/getting-started/primers/payment-request/) is supported on Chrome for Android and Android Webview v. ^53.0.
+[Payment request api](https://developers.google.com/web/fundamentals/getting-started/primers/payment-request/) is supported on Chrome for desktop v. ^60.0, Chrome for Android and Android Webview v. ^53.0, Microsoft Edge v. ^15.0.
 
 ## Demo
 
