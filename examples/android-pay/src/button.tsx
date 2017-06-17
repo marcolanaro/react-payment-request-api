@@ -15,9 +15,11 @@ export interface StateProps {
 const Button: React.StatelessComponent<PaymentRequestInterface & OwnProps & StateProps> = ({
   show, isSupported, style, payed,
 }) => isSupported
-  ? <button onClick={show} style={{ ...style, ...(payed ? styles.payed : styles.toPay) }} disabled={payed}>
+  ?  (
+    <button onClick={show} style={{ ...style, ...(payed ? styles.payed : styles.toPay) }} disabled={payed}>
       {payed ? 'Payed' : 'Pay now'}
     </button>
+  )
   : <span>Payment request not supported</span>;
 
 const ConnectedButton = connect<StateProps, void, OwnProps>((state) => ({

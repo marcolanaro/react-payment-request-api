@@ -1,32 +1,28 @@
 {
-  "name": "react-payment-request-api-example",
-  "version": "0.0.1",
-  "description": "",
-  "scripts": {
-    "lint": "tslint './src/**/*.tsx'",
-    "start": "webpack-dev-server"
+  "name": "react-payment-request-api-example-android-pay",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "^20.0.0",
+    "@types/node": "^7.0.31",
+    "@types/react": "^15.0.29",
+    "@types/react-dom": "^15.5.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-payment-request-api": "^1.0.3",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "@types/react": "^15.0.25",
-    "@types/react-dom": "^15.5.0",
-    "@types/react-redux": "^4.4.40",
+    "@types/react-redux": "^4.4.43",
     "@types/redux": "^3.6.0",
-    "@types/redux-actions": "^1.2.4",
-    "ts-loader": "^2.0.3",
-    "tslint": "^5.2.0",
-    "tslint-eslint-rules": "^4.0.0",
-    "tslint-microsoft-contrib": "^4.0.1",
-    "tslint-react": "^3.0.0",
-    "typescript": "^2.3",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
+    "@types/redux-actions": "^1.2.6",
+    "react-scripts-ts": "2.2.0"
   },
-  "dependencies": {
-    "react": "^15.5.0",
-    "react-dom": "^15.5.0",
-    "react-payment-request-api": "^1.0.3",
-    "react-redux": "^5.0.4",
-    "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "eject": "react-scripts-ts eject"
   }
 }

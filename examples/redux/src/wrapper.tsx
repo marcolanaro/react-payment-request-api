@@ -20,11 +20,12 @@ interface OwnProps {
 
 const Wrapper: React.StatelessComponent<StateProps & DispatchProps & OwnProps> = ({
   style, supportedPaymentCards, onShowSuccess,
-}) =>
+}) => (
   <Button
     config={getConfig(supportedPaymentCards, onShowSuccess)}
     style={style}
-  />;
+  />
+);
 
 const mapState2Props = (state: State): StateProps => ({
   supportedPaymentCards: state.supportedPaymentCards,

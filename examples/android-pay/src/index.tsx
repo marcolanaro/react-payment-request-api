@@ -14,7 +14,7 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-const App = () =>
+const App = () => (
   <Provider store={store}>
     <div style={styles.container}>
       <div style={styles.logo} />
@@ -33,6 +33,7 @@ const App = () =>
         <Wrapper style={styles.button} />
       </div>
     </div>
-  </Provider>;
+  </Provider>
+);
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -5,7 +5,7 @@ import Button from './button';
 import getConfig from './config';
 import styles from './styles';
 
-const App = () =>
+const App = () => (
   <div style={styles.container}>
     <div style={styles.logo} />
     <h1 style={styles.h1}>React Payment Request API</h1>
@@ -18,6 +18,7 @@ const App = () =>
     <div style={styles.content}>
       <Button config={getConfig()} style={styles.button} />
     </div>
-  </div>;
+  </div>
+);
 
 ReactDOM.render(<App />, document.getElementById('app'));
