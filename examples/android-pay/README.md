@@ -7,9 +7,9 @@
   </strong>
 </p>
 
-## Android Pay Demo
+## Andorid Pay Demo
 
-This component differ from the basic example because it add Android Pay as supported method.
+This component differ from the [redux](../redux) example because it add Android Pay as supported method.
 
 ## Run the demo
 

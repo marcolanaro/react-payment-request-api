@@ -1,14 +1,27 @@
 import * as React from 'react';
 import paymentRequest, { PaymentRequestInterface } from 'react-payment-request-api';
+import { connect } from 'react-redux';
+
+import styles from './styles';
 
 export interface OwnProps {
-  style: object;
+  style: React.CSSProperties;
 }
 
-const Button: React.StatelessComponent<PaymentRequestInterface & OwnProps> = ({
-  show, isSupported, style,
+export interface StateProps {
+  payed: boolean;
+}
+
+const Button: React.StatelessComponent<PaymentRequestInterface & OwnProps & StateProps> = ({
+  show, isSupported, style, payed,
 }) => isSupported
-  ? <button onClick={show} style={style}>Pay now!</button>
+  ? <button onClick={show} style={{ ...style, ...(payed ? styles.payed : styles.toPay) }} disabled={payed}>
+      {payed ? 'Payed' : 'Pay now'}
+    </button>
   : <span>Payment request not supported</span>;
 
-export default paymentRequest<OwnProps>()(Button);
+const ConnectedButton = connect<StateProps, void, OwnProps>((state) => ({
+  payed: state.payed,
+}))(Button);
+
+export default paymentRequest<OwnProps>()(ConnectedButton);

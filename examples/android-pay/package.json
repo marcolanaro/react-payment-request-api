@@ -9,6 +9,9 @@
   "devDependencies": {
     "@types/react": "^15.0.25",
     "@types/react-dom": "^15.5.0",
+    "@types/react-redux": "^4.4.40",
+    "@types/redux": "^3.6.0",
+    "@types/redux-actions": "^1.2.4",
     "ts-loader": "^2.0.3",
     "tslint": "^5.2.0",
     "tslint-eslint-rules": "^4.0.0",
@@ -21,6 +24,9 @@
   "dependencies": {
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
-    "react-payment-request-api": "^1.0.3"
+    "react-payment-request-api": "^1.0.3",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   }
 }
