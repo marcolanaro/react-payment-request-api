@@ -32,11 +32,13 @@ const getConfig = (supportedPaymentCards: string[], onShowSuccess: () => void) =
     requestPayerPhone: true,
   },
   onShowSuccess: (result, resolve, reject): void => {
-    onShowSuccess();
     /* tslint:disable-next-line:no-console */
     console.log('Result:', result);
     // make the payment
-    setTimeout(resolve, 2000);
+    setTimeout(() => {
+      onShowSuccess();
+      resolve();
+    } , 2000);
   },
   /* tslint:disable-next-line:no-console */
   onShowFail: (error) => console.log('Error', error),

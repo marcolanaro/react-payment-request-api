@@ -16,7 +16,7 @@ const Button: React.StatelessComponent<PaymentRequestInterface & OwnProps & Stat
   show, isSupported, style, payed,
 }) => isSupported
   ? <button onClick={show} style={{ ...style, ...(payed ? styles.payed : styles.toPay) }} disabled={payed}>
-      { payed ? 'Payed' : 'Pay now' }
+      {payed ? 'Payed' : 'Pay now'}
     </button>
   : <span>Payment request not supported</span>;
 
