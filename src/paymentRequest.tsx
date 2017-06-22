@@ -13,7 +13,7 @@ import {
 
 let request: PaymentRequest;
 
-const isSupported = () => !!(window as any).PaymentRequest; // tslint:disable-line:no-any
+const hasSupport = () => !!(window as any).PaymentRequest; // tslint:disable-line:no-any
 
 const addEventListener = (requestListener: PaymentRequest, event: string, callback?: Callback) => {
   if (!!callback) {
@@ -53,18 +53,12 @@ const paymentRequest = <TProps extends Object>() => (
 ): React.ComponentClass<TProps & PaymentRequestParamsConfig> => (
   class ExtendedComponent extends React.Component<TProps & PaymentRequestParamsConfig, void> {
     render() {
-      const { config, ...rest } = this.props as any; // tslint:disable-line:no-any
-      if (!isSupported() || !config) {
-        return <WrappedComponent {...rest} isSupported={false} />;
-      }
-      return (
-        <WrappedComponent
-          {...rest}
-          isSupported={true}
-          show={show(config)}
-          abort={abort}
-        />
-      );
+      const { config, ...passedProps } = this.props as any; // tslint:disable-line:no-any
+      const isSupported = hasSupport();
+      const supportedProps = isSupported && config ?
+        { isSupported, show: show(config), abort } :
+        { isSupported };
+      return <WrappedComponent {...passedProps} {...supportedProps} />;
     }
   }
 );
