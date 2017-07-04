@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { AnyComponent } from './utils';
 import normalizeInstrumentations from './normalizeInstrumentations';
 import {
   PaymentRequestParamsConfig,
@@ -48,16 +47,20 @@ export const show = (params: PaymentRequestParams) => () => {
     .catch((err) => params.onShowFail(err));
 };
 
-const paymentRequest = <TProps extends Object>() => (
-  WrappedComponent: AnyComponent<TProps & PaymentRequestInterface, any> // tslint:disable-line:no-any
-): React.ComponentClass<TProps & PaymentRequestParamsConfig> => (
+const paymentRequest = <TProps extends object>() => (
+  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line:no-any
+  WrappedComponent: React.ClassType<TProps & PaymentRequestInterface, any, any> | React.SFC<TProps & PaymentRequestInterface>
+// tslint:disable-next-line:no-any
+): React.ClassType<TProps & PaymentRequestParamsConfig, any, any> => (
   class ExtendedComponent extends React.Component<TProps & PaymentRequestParamsConfig, void> {
     render() {
       const { config, ...passedProps } = this.props as any; // tslint:disable-line:no-any
       const isSupported = hasSupport();
-      const supportedProps = isSupported && config ?
-        { isSupported, show: show(config), abort } :
-        { isSupported };
+      const supportedProps = isSupported && config
+        ? { isSupported, abort, show: show(config) }
+        : { isSupported };
+
       return <WrappedComponent {...passedProps} {...supportedProps} />;
     }
   }
