@@ -48,8 +48,7 @@ export const show = (params: PaymentRequestParams) => () => {
 };
 
 const paymentRequest = <TProps extends object>() => (
-  // tslint:disable-next-line:max-line-length
-  // tslint:disable-next-line:no-any
+  // tslint:disable-next-line:max-line-length no-any
   WrappedComponent: React.ClassType<TProps & PaymentRequestInterface, any, any> | React.SFC<TProps & PaymentRequestInterface>
 // tslint:disable-next-line:no-any
 ): React.ClassType<TProps & PaymentRequestParamsConfig, any, any> => (
