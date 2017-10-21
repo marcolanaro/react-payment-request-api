@@ -4,8 +4,8 @@
   "description": "React high order component that expose the payment request api",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "jsnext:main": "dist/react-payment-request-api.min.js",
-  "module": "dist/react-payment-request-api.min.js",
+  "jsnext:main": "lib/index.d.ts",
+  "module": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./dist",
     "build:lib": "tsc",
