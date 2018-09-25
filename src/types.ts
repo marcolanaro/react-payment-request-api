@@ -4,7 +4,7 @@ export type Callback = (request: PaymentRequest, resolve: Resolve, reject: Rejec
 
 export type PaymentRequestParams = {
   methodData: PaymentMethodData[];
-  details: PaymentDetails;
+  details: PaymentDetailsInit;
   options?: PaymentOptions;
   onShowSuccess: (paymentResponse: PaymentResponse, resolve: Resolve, reject: Reject) => void;
   onShowFail: (err: string) => void;

@@ -10,6 +10,5 @@
   "testRegex": "./src/.*\\.test\\.(ts|tsx|js)$",
   "collectCoverage": true,
   "collectCoverageFrom": ["src/paymentRequest.tsx", "src/normalizeInstrumentations.ts"],
-  "mapCoverage": true,
   "setupTestFrameworkScriptFile": "./enzyme-setup.js"
 }

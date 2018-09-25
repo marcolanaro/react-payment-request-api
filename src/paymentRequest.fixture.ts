@@ -1,8 +1,10 @@
 import { PaymentRequestParams } from './index';
 
-const details: PaymentDetails = {
-  displayItems: [],
-  total: {},
+const details: PaymentDetailsInit = {
+  total: {
+    label: 'Total due',
+    amount: { currency: 'USD', value : '22.15' },
+  },
 };
 
 const getConfig = (onShowFail?: jest.Mock<{}>, removeOptions?: boolean) => ({
