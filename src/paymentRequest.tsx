@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import normalizeInstrumentations from './normalizeInstrumentations';
 import {
   PaymentRequestParamsConfig,
   PaymentRequestInterface,
@@ -29,7 +28,7 @@ export const abort = () => request.abort();
 
 export const show = (params: PaymentRequestParams) => () => {
   request = new PaymentRequest(
-    normalizeInstrumentations(params.methodData),
+    params.methodData,
     params.details,
     params.options || {}
   );
