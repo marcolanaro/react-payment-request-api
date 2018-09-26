@@ -10,7 +10,7 @@
     "@types/react-dom": "^16.0.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-payment-request-api": "^2.1.0",
+    "react-payment-request-api": "^3.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
@@ -20,7 +20,8 @@
     "@types/redux": "^3.6.0",
     "@types/redux-actions": "^1.2.6",
     "gh-pages": "^1.0.0",
-    "react-scripts-ts": "2.17.0"
+    "react-scripts-ts": "2.17.0",
+    "typescript": "^3.0.3"
   },
   "scripts": {
     "start": "react-scripts-ts start",
