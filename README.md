@@ -23,7 +23,7 @@
 
 ## Browser support
 
-[Payment request api](https://developers.google.com/web/fundamentals/getting-started/primers/payment-request/) is supported on Chrome for desktop v. ^61.0, Chrome for Android and Android Webview v. ^53.0, Microsoft Edge v. ^15.0.
+[Payment request api](https://developers.google.com/web/fundamentals/getting-started/primers/payment-request/) is supported on Chrome for desktop v. ^61.0, Chrome for Android and Android Webview v. ^56.0, Microsoft Edge v. ^15.0.
 
 ## Demo
 
@@ -68,27 +68,6 @@ export default SmartComponent;
 #### How does it work?
 
 It takes a configuration prop that define how the native widget should behave and any other property you want to pass to the UI component. It spread all the properties a part from the configuration to the enhanced UI component. The UI component will also receive other props that will help improving the experience allowing complete control on the renderer and on the action handler.
-
-#### How does it support browser that were implementing the first draft of Payment Request?
-
-Chrome v. 53.0 - 55.00 was implementing a draft of the standard for Payment Request. Since then, there have been some evolutions on how to define `paymentMethods` in the configuration. Specifically, the payment methos should now be defined as:
-
-```bash
-{
-  supportedMethods: ['basic-card'],
-  data: {
-    supportedNetworks: ['visa', 'mastercard'],
-  },
-}
-```
-
-The library de-normalize the configuration to be able to support the old standard that looks like:
-
-```bash
-{
-  supportedMethods: ['visa', 'mastercard']
-}
-```
 
 #### Does it support Redux or any other flux implementation?
 
