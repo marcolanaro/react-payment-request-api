@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-jest.mock('./normalizeInstrumentations', () => ({
-  default: (data: PaymentRequestParams) => data,
-}));
-
 import paymentRequest, { PaymentRequestParams, PaymentRequestInterface } from './index';
 import getConfig from './paymentRequest.fixture';
 
