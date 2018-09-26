@@ -1,6 +1,6 @@
 import { PaymentRequestParams } from 'react-payment-request-api';
 
-const details: PaymentDetails = {
+const details: PaymentDetailsInit = {
   displayItems: [{
     label: 'Original donation amount',
     amount: { currency: 'USD', value: '65.00' },
