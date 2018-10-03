@@ -87,6 +87,7 @@ const getConfig = (supportedPaymentCards: string[], onShowSuccess: () => void) =
   onShippingOptionChange: (request, resolve, reject): void => {
     resolve(details);
   },
+  // tslint:disable-next-line:no-any
   onMerchantValidation: (event: any): void => {
     event.complete(Promise.resolve(event.validationURL));
   },
