@@ -98,6 +98,7 @@ onShowSuccess           | Promise based callback: (result, resolve, reject)  | T
 onShowFail              | Promise based callback: (error)                    | The handler will be executed if the filling of the form is [not successfull](https://www.w3.org/TR/payment-request/#dom-paymentcomplete-fail) (like when the user dismiss the form).
 onShippingAddressChange | Promise based callback: (request, resolve, reject) | The handler will be executed if the [shipping address has change](https://www.w3.org/TR/payment-request/#idl-def-paymentrequestupdateevent). You can change the request and then resolve the promise.
 onShippingOptionChange  | Promise based callback: (request, resolve, reject) | The handler will be executed if the [shipping option has change](https://www.w3.org/TR/payment-request/#idl-def-paymentrequestupdateevent). You can change the request and then resolve the promise.
+onMerchantValidation    |  Promise based callback: (event)                   | Thde handler is used by Apple pay to [validate the merchant](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation).
 
 ## License
 

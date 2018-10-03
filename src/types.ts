@@ -10,6 +10,7 @@ export type PaymentRequestParams = {
   onShowFail: (err: string) => void;
   onShippingAddressChange?: Callback;
   onShippingOptionChange?: Callback;
+  onMerchantValidation?: Callback;
 };
 
 export interface PaymentRequestParamsConfig {

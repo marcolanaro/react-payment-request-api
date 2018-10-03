@@ -28,6 +28,10 @@ const getConfig = (onShowFail?: jest.Mock<{}>, removeOptions?: boolean) => ({
   onShippingOptionChange: (request, resolve, reject): void => {
     resolve(details);
   },
+  // tslint:disable-next-line:no-any
+  onMerchantValidation: (event: any): void => {
+    event.complete(Promise.resolve(event.validationURL));
+  },
 }) as PaymentRequestParams;
 
 export default getConfig;

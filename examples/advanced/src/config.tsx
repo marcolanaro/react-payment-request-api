@@ -42,6 +42,16 @@ const getConfig = (supportedPaymentCards: string[], onShowSuccess: () => void) =
         },
       },
     },
+    {
+      supportedMethods: 'https://apple.com/apple-pay',
+      data: {
+          version: 3,
+          merchantIdentifier: 'merchant.com.example',
+          merchantCapabilities: ['supportsDebit'],
+          supportedNetworks: ['masterCard', 'visa'],
+          countryCode: 'US',
+      },
+    },
   ],
   details: details,
   options: {
@@ -76,6 +86,9 @@ const getConfig = (supportedPaymentCards: string[], onShowSuccess: () => void) =
   },
   onShippingOptionChange: (request, resolve, reject): void => {
     resolve(details);
+  },
+  onMerchantValidation: (event: any): void => {
+    event.complete(Promise.resolve(event.validationURL));
   },
 }) as PaymentRequestParams;
 

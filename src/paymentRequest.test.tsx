@@ -115,7 +115,7 @@ describe('PaymentRequest', () => {
         it('should be executed twice', () => {
           const { wrapper, UIComponent, addEventListener } = generator();
           wrapper.find(UIComponent).prop('show')();
-          expect(addEventListener).toHaveBeenCalledTimes(2);
+          expect(addEventListener).toHaveBeenCalledTimes(3);
         });
 
         it('should add an event on shippingaddresschange', () => {
@@ -128,6 +128,12 @@ describe('PaymentRequest', () => {
           const { wrapper, UIComponent, addEventListener } = generator();
           wrapper.find(UIComponent).prop('show')();
           expect(addEventListener).toHaveBeenCalledWith('shippingoptionchange', expect.any(Function));
+        });
+
+        it('should add an event on onmerchantvalidation', () => {
+          const { wrapper, UIComponent, addEventListener } = generator();
+          wrapper.find(UIComponent).prop('show')();
+          expect(addEventListener).toHaveBeenCalledWith('onmerchantvalidation', expect.any(Function));
         });
       });
 

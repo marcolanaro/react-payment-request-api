@@ -35,6 +35,7 @@ export const show = (params: PaymentRequestParams) => () => {
 
   addEventListener(request, 'shippingaddresschange', params.onShippingAddressChange);
   addEventListener(request, 'shippingoptionchange', params.onShippingOptionChange);
+  addEventListener(request, 'onmerchantvalidation', params.onMerchantValidation);
 
   request.show()
     .then((paymentResponse) => {
